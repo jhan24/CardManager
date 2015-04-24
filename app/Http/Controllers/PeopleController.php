@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Person;
+use App\Card;
 
 use Illuminate\Http\Request;
 
@@ -49,9 +50,10 @@ class PeopleController extends Controller {
         return Person::find($id)->toJson();
 	}
 
+    //now this uses relationships. hopefully.
     public function showCards($id)
     {
-        return Person::find($id)->getCards()->toJson();
+        return Person::find($id)->cards->toJson();
     }
 
 	/**

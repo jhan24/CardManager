@@ -35,9 +35,8 @@ class Person extends Model {
         'cvJP',
     ];
 
-    public function getCards()
-    {
-        return Card::where('firstName', '=', $this->firstName)->where('lastName', '=', $this->lastName)->get();
+    public function cards() {
+        return $this->hasMany('App\Card');
     }
 
 }
