@@ -1,0 +1,102 @@
+<div class="container">
+
+    <div class="row" style="text-align: center; padding: 10px"><h2>Girlfriend Kari Database Testing</h2></div>
+
+    <div style="padding:10px" ; ng-controller="mainCtrl">
+        <h3>1. Girl Lookup by ID</h3>
+        <label for="girlNumberLookup">Girl Number</label>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="girlNumberLookup" placeholder="Enter Girl Number"
+                           ng-model="girlNumber">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ; ng-click="getPerson(girlNumber)">Get</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        Girl Number Testing: {{girlNumber}}<br>
+        Name: {{girl.firstName + " " + girl.lastName}} <br>
+        Name JP: {{girl.lastNameJP + girl.firstNameJP}} <br>
+    </div>
+
+    <div style="padding:10px" ; ng-controller="mainCtrl">
+        <h3>2. Card Lookup by Number</h3>
+        <label for="cardNumberLookup">Card Number</label>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="cardNumberLookup" placeholder="Enter Card Number"
+                           ng-model="cardNumber">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ; ng-click="getCard(cardNumber)">Get</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        Card Number Testing: {{cardNumber}}<br>
+        Girl Name: {{card.firstName + " " + card.lastName}} <br>
+        Girl Name JP: {{card.lastNameJP + card.firstNameJP}} <br>
+        Card Name: {{card.cardName}} <br>
+        Card Name JP: {{card.cardNameKanji}} <br>
+        Card Image: <img src="http://localhost/images/cards/{{card.fileName}}" class="img-responsive" alt="card image" width="25%">
+        <br>
+    </div>
+
+    <div style="padding:10px" ; ng-controller="mainCtrl">
+        <h3>3. Girl Listing &nbsp;
+            <button type="button" class="btn btn-default" ng-click="getGirls()">{{buttonGirls}}</button>
+            <br><br></h3>
+        <div ng-hide="concealGirls">
+            <table class="table table-hover table-bordered">
+                <tr ng-repeat="x in girls">
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.firstName }}</td>
+                    <td>{{ x.lastName }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div style="padding:10px" ; ng-controller="mainCtrl">
+        <h3>4. Card Listing &nbsp;
+            <button type="button" class="btn btn-default" ; ng-click="getCards()">{{buttonCards}}</button>
+        </h3>
+        <div ng-hide="concealCards">
+            <br>
+
+            <div class="row">
+                <span class="col-sm-6">
+                    Search: <input type="text" class="form-control" id="cardSearch" placeholder="Enter keywords..."
+                                   ng-model="query">
+                </span>
+                <span class="col-sm-6">
+                    Sort by: <select type="text" class="form-control" ng-model="orderProp">
+                    <option value="cardNumber">Card Number</option>
+                    <option value="firstName">First Name</option>
+                    <option value="lastName">Last Name</option>
+                    <option value="cardName">Card Name</option>
+                    <option value="setName">Set Name</option>
+                </select>
+                </span>
+            </div>
+            <br>
+            <table class="table table-hover table-bordered">
+                <tr ng-repeat="x in cards | filter:query | orderBy:orderProp">
+                    <td>{{ x.cardNumber }}</td>
+                    <td>{{ x.firstName + " " + x.lastName }}</td>
+                    <td>{{ x.cardName }}</td>
+                    <td>{{ x.cardNameKanji }}</td>
+                    <td>{{ x.rarity }}</td>
+                    <td>{{ x.type }}</td>
+                    <td>{{ x.setName }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

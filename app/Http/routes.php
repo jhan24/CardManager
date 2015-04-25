@@ -16,15 +16,15 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('girls', 'PeopleController@index');
+Route::get('api/girls', 'PeopleController@index');
 
-Route::get('girls/{id}', 'PeopleController@show');
+Route::get('api/girls/{id}', 'PeopleController@show');
 
-Route::get('cards', 'CardController@index');
+Route::get('api/cards', 'CardController@index');
 
-Route::get('cards/{id}', 'CardController@show');
+Route::get('api/cards/{id}', 'CardController@show');
 
-Route::get('girls/cards/{id}', 'PeopleController@showCards');
+Route::get('api/girls/cards/{id}', 'PeopleController@showCards');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
